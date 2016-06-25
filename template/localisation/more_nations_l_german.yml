@@ -1,0 +1,16 @@
+﻿l_german:
+ # countries_l_german.yml
+ MDG_fascism:0 "Madagassen"
+ MDG_fascism_DEF:0 "Die Madagassen"
+ MDG_democratic:0 "Republik Madagaskar"
+ MDG_democratic_DEF:0 "Die Republik Madagaskar"
+ MDG_communism:0 "Arbeiterrepublik Madagaskar"
+ MDG_communism_DEF:0 "Die Arbeiterrepublik Madagaskar"
+ MDG_neutrality:0 "Madagaskar"
+ MDG_neutrality_DEF:0 "Madagaskar"
+ MDG_fascism_ADJ:0 "Madagassisch"
+ MDG_democratic_ADJ:0 "Madagassisch"
+ MDG_communism_ADJ:0 "Madagassisch"
+ MDG_neutrality_ADJ:0 "Madagassisch"
+ # victory_points_l_german.yml
+ VICTORY_POINTS_5128:0 "Antananarivo"
