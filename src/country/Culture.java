@@ -65,7 +65,7 @@ public enum Culture {
       case SOUTHAMERICAN:
         return "South America/Portrait_South_America_Generic";
       case MIDDLE_EASTERN:
-        return "Arabia/Portrait_Arabia_Generic";
+        return "SAU/Portrait_Arabia_Generic";
       case AFRICAN:
         return "Africa/Portrait_Africa_Generic";
       default:

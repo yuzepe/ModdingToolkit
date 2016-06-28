@@ -1,4 +1,4 @@
-﻿ = {
+ = {
 	male = {
 		names = {
 			Amare Bekele Berhanu Saleh Haile Berihun Demissie Desta Geteye Girma Kelile Negasi

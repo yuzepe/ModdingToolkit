@@ -16,18 +16,20 @@ public class Country {
   String template;
   String tag;
   String name;
-  int capital;
+  String adjective;
+  int capitalState;
   int capitalProvince;
   String leader;
   Color color;
   Culture culture;
 
-  public Country(String project, String template, String tag, String name, int capital, int capitalProvince, String leader, Color color, Culture culture) {
+  public Country(String project, String template, String tag, String name, String adjective, int capitalState, int capitalProvince, String leader, Color color, Culture culture) {
     this.project = project;
     this.template = template;
     this.tag = tag;
     this.name = name;
-    this.capital = capital; //state id
+    this.adjective = adjective;
+    this.capitalState = capitalState; //state id
     this.capitalProvince = capitalProvince; //province id
     this.leader = leader;
     this.color = color;
@@ -90,44 +92,15 @@ public class Country {
     fileInput = FileUtils.readFromFile(source);
     fileOutput = new StringBuilder("");
     fileOutput.append("\r\n").append(tag).append(fileInput);
-//    fileOutput.append("\r\n").append(tag).append(" = {");
-//    fileOutput.append("\r\n\tmale = {");
-//    fileOutput.append("\r\n\t\tnames = { \"John\" \"Bob\" \"Lucas\" \"Marcus\" \"Alexander\" \"Alex\" \"Peter\" \"Jonas\" \"Jim\" \"Johannes\"}");
-//    fileOutput.append("\r\n\t}");
-//    fileOutput.append("\r\n\tfemale = {");
-//    fileOutput.append("\r\n\t\tnames = { }");
-//    fileOutput.append("\r\n\t}");
-//    fileOutput.append("\r\n\tsurnames = { \"Smith\" \"Jones\" \"Taylor\" \"Brown\" \"Williams\" \"Wilson\" \"Evans\" \"Walker\" \"White\" \"Roberts\" }");
-//    fileOutput.append("\r\n\tcallsigns = { }");
-//    fileOutput.append("\r\n}");
     FileUtils.appendToFile(destination, fileOutput.toString());
     
     //Standartportraits für Generäle und Admirale
-    //TODO: Aus Datei lesen und je nach Culture abhängig Nutzen
-//    destination = project + "/common/portraits/" + project + "_portraits.txt";
-//    fileOutput = new StringBuilder("");
-//    fileOutput.append("\r\n").append(tag).append(" = {");
-//    RAJ = {
-//            army = {
-//                    male = {
-//                            "gfx/leaders/Asia/Portrait_Asia_Generic_land_1.dds"
-//                            "gfx/leaders/Asia/Portrait_Asia_Generic_land_2.dds"
-//                            "gfx/leaders/Asia/Portrait_Asia_Generic_land_3.dds"
-//                            "gfx/leaders/Asia/Portrait_Asia_Generic_land_4.dds"
-//                            "gfx/leaders/Asia/Portrait_Asia_Generic_land_5.dds"
-//                    }
-//            }
-//
-//            navy = {
-//                    male = {
-//                            "gfx/leaders/Asia/Portrait_Asia_Generic_navy_1.dds"
-//                            "gfx/leaders/Asia/Portrait_Asia_Generic_navy_2.dds"
-//                            "gfx/leaders/Asia/Portrait_Asia_Generic_navy_3.dds"
-//                    }
-//            }
-//    }
-//    fileOutput.append("\r\n}");
-//    FileUtils.appendToFile(destination, fileOutput.toString());
+    source = template + "/common/portraits/" + culture.toString() + "_portraits.txt";
+    destination = project + "/common/portraits/" + project + "_portraits.txt";
+    fileInput = FileUtils.readFromFile(source);
+    fileOutput = new StringBuilder("");
+    fileOutput.append("\r\n").append(tag).append(fileInput);
+    FileUtils.appendToFile(destination, fileOutput.toString());
     
     //Flaggen erstellen
     FileUtils.createPlainTGA(project + "/gfx/flags/" + tag + ".tga", color, 82, 52);
@@ -140,7 +113,7 @@ public class Country {
     destination = project + path + tag + " - " + name + ".txt";
     fileInput = FileUtils.readFromFile(source);
     fileOutput = new StringBuilder("");
-    fileOutput.append("capital = ").append(capital);
+    fileOutput.append("capital = ").append(capitalState);
     fileOutput.append("\r\n\r\noob = \"").append(tag).append("_1936\"");
     fileOutput.append("\r\n\r\n").append(fileInput);
     fileOutput.append(buildLeaderString(Ideology.DEMOCRATIC));
@@ -177,5 +150,33 @@ public class Country {
     fileOutput.append("\r\n\t}");
     fileOutput.append("\r\n}");
     FileUtils.writeToFile(destination, fileOutput.toString());
+    
+    //Language Dateien
+    fileOutput = new StringBuilder("");
+    fileOutput.append("\r\n ").append(tag).append("_fascism:0 \"").append(name).append("\"");
+    fileOutput.append("\r\n ").append(tag).append("_fascism_DEF:0 \"").append(name).append("\"");
+    fileOutput.append("\r\n ").append(tag).append("_democratic:0 \"Republic of ").append(name).append("\"");
+    fileOutput.append("\r\n ").append(tag).append("_democratic_DEF:0 \"The Republic of ").append(name).append("\"");
+    fileOutput.append("\r\n ").append(tag).append("_communism:0 \"Socialist Republic of ").append(name).append("\"");
+    fileOutput.append("\r\n ").append(tag).append("_communism_DEF:0 \"The Socialist Republic of ").append(name).append("\"");
+    fileOutput.append("\r\n ").append(tag).append("_neutrality:0 \"").append(name).append("\"");
+    fileOutput.append("\r\n ").append(tag).append("_neutrality_DEF:0 \"").append(name).append("\"");
+    fileOutput.append("\r\n ").append(tag).append("_fascism_ADJ:0 \"").append(adjective).append("\"");
+    fileOutput.append("\r\n ").append(tag).append("_democratic_ADJ:0 \"").append(adjective).append("\"");
+    fileOutput.append("\r\n ").append(tag).append("_communism_ADJ:0 \"").append(adjective).append("\"");
+    fileOutput.append("\r\n ").append(tag).append("_neutrality_ADJ:0 \"").append(adjective).append("\"");
+    
+    String[] languages = { "braz_por", "english", "frensh", "german", "polish", "russian", "spanish" };
+    for (String language : languages) {
+      destination = project + "/localisation/" + project + "_l_" + language + ".yml";
+      if(!FileUtils.exists(destination)) {
+        StringBuilder header = new StringBuilder();
+        header.append("l_").append(language).append(":");
+        header.append("\r\n").append(" # countries_l_").append(language).append(".yml");
+        FileUtils.writeToFile(destination, header.toString());
+      } 
+      FileUtils.appendToFile(destination, fileOutput.toString());
+    }
+
   }
 }

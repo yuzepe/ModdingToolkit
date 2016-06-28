@@ -1,4 +1,4 @@
-﻿ = {
+ = {
 	male = {
 		names = { Aleksander Alexei Andrei Anton Boris Dmitry Fyodor Gennady 
                                  Giorgi Grigoriy Igor Ilya Ivan Kirill Konstantin Lavr Leonid Lev Maxim 

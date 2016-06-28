@@ -105,6 +105,11 @@ public class FileUtils {
     writeToFileMode(filename, content, true);
   }
 
+  public static boolean exists(String filename) {
+    File file = new File(filename);
+    return file.exists();
+  }
+          
   /**
    * Kopiert eine Datei von A nach B. Ist der Pfad zu B nicht vorhanden wird er
    * erstellt.

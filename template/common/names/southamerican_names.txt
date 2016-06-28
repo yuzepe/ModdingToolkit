@@ -1,4 +1,4 @@
-﻿ = {
+ = {
 	male = {
 		names = { 
 			Afonso Antônio Artur Augusto Aurélio Benjamin Cândido Carlos Celso Custódio

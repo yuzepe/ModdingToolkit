@@ -1,4 +1,4 @@
-﻿ = {
+ = {
 	male = {
 		names = { Karim 
 			"Abd Allah" "Abd al-Karim" "Abd al-Malik" "Abd al-Qadir" "Abd al-Rahman" Ahmad Ali 
