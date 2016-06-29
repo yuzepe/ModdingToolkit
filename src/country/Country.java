@@ -167,7 +167,7 @@ public class Country {
     fileOutput.append("\r\n ").append(tag).append("_communism_ADJ:0 \"").append(adjective).append("\"");
     fileOutput.append("\r\n ").append(tag).append("_neutrality_ADJ:0 \"").append(adjective).append("\"");
     
-    String[] languages = { "braz_por", "english", "frensh", "german", "polish", "russian", "spanish" };
+    String[] languages = { "braz_por", "english", "french", "german", "polish", "russian", "spanish" };
     for (String language : languages) {
       destination = project + "/localisation/" + project + "_l_" + language + ".yml";
       if(!FileUtils.exists(destination)) {
