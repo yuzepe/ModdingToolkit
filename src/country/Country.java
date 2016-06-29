@@ -113,7 +113,8 @@ public class Country {
     destination = project + path + tag + " - " + name + ".txt";
     fileInput = FileUtils.readFromFile(source);
     fileOutput = new StringBuilder("");
-    fileOutput.append("capital = ").append(capitalState);
+    // Utf-8 mit Byte-Order-Mask (ï»¿)
+    fileOutput.append("ï»¿capital = ").append(capitalState);
     fileOutput.append("\r\n\r\noob = \"").append(tag).append("_1936\"");
     fileOutput.append("\r\n\r\n").append(fileInput);
     fileOutput.append(buildLeaderString(Ideology.DEMOCRATIC));
